@@ -1,83 +1,67 @@
 import { MdArrowOutward, MdCopyright } from "react-icons/md";
 import "./styles/Contact.css";
 
+const socials = [
+  { label: "GitHub",    href: "https://github.com/Shaibal2002" },
+  { label: "LinkedIn",  href: "https://www.linkedin.com/in/shaibal-mallick/" },
+  { label: "CodePen",   href: "https://codepen.io/Shaibal-Mallick" },
+  { label: "Instagram", href: "https://www.instagram.com/shaxcasm" },
+];
+
 const Contact = () => {
   return (
-    <div className="contact-section section-container" id="contact">
-      <div className="contact-container">
-        <h3>Contact</h3>
-        <div className="contact-flex">
-          <div className="contact-box">
-            <h4>Connect</h4>
-            <p>
-              <a
-                href="https://www.linkedin.com/in/akashrmalhotra/"
-                target="_blank"
-                rel="noreferrer"
-                data-cursor="disable"
-              >
-                LinkedIn — akashrmalhotra
-              </a>
-            </p>
-            <h4>Education</h4>
-            <p>
-              PGPWE (MBA), Indian Institute of Management, Lucknow — 2021–2023
-            </p>
-            <p>
-              B.Tech Computer Science, Manav Rachna Educational Institutions —
-              2009–2013
-            </p>
-          </div>
-          <div className="contact-box">
-            <h4>Social</h4>
-            <a
-              href="https://github.com/akashrmalhotra"
-              target="_blank"
-              rel="noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              GitHub <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/akashrmalhotra/"
-              target="_blank"
-              rel="noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              LinkedIn <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.youtube.com/@Leftbraincoder"
-              target="_blank"
-              rel="noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              YouTube <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.instagram.com/leftbraincoder/"
-              target="_blank"
-              rel="noreferrer"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Instagram <MdArrowOutward />
-            </a>
-          </div>
-          <div className="contact-box">
-            <h2>
-              Designed and Developed <br /> by <span>Akash Malhotra</span>
-            </h2>
-            <h5>
-              <MdCopyright /> 2026
-            </h5>
-          </div>
+    <section className="contact-section" id="contact">
+      <h3>Contact</h3>
+
+      <div className="contact-grid">
+
+        {/* — Reach out — */}
+        <div className="contact-col">
+          <span className="contact-col-label">Reach out</span>
+
+          <a href="https://www.linkedin.com/in/shaibal-mallick/" target="_blank" rel="noreferrer" className="contact-link-item">
+            <span className="contact-link-label">LinkedIn</span>
+            <span className="contact-link-value">Shaibal Mallick</span>
+          </a>
+          <a href="mailto:shaibalmallick69@gmail.com" className="contact-link-item">
+            <span className="contact-link-label">Email</span>
+            <span className="contact-link-value">shaibalmallick69@gmail.com</span>
+          </a>
+          <a href="tel:+916290746662" className="contact-link-item">
+            <span className="contact-link-label">Phone</span>
+            <span className="contact-link-value">+91 6290 746 662</span>
+          </a>
         </div>
+
+        <div className="contact-divider" />
+
+        {/* — Socials — */}
+        <div className="contact-col">
+          <span className="contact-col-label">Elsewhere</span>
+
+          {socials.map(({ label, href }) => (
+            <a key={label} href={href} target="_blank" rel="noreferrer" className="contact-social">
+              <span className="contact-social-name">{label}</span>
+              <MdArrowOutward className="contact-social-arrow" />
+            </a>
+          ))}
+        </div>
+
+        <div className="contact-divider" />
+
+        {/* — Signature — */}
+        <div className="contact-col">
+          <span className="contact-col-label">Provenance</span>
+          <p className="contact-sig-name">
+            Designed &amp; developed<br />by <span>Shaibal Mallick</span>
+          </p>
+          <p className="contact-copyright">
+            <MdCopyright /> 2026
+          </p>
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 

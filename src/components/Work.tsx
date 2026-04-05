@@ -1,36 +1,25 @@
 import { useState, useCallback } from "react";
 import "./styles/Work.css";
-import WorkImage from "./WorkImage";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
 const projects = [
   {
-    title: "CallHQ",
-    category: "Voice AI Calling Platform",
-    tools: "Voice AI, Calling Automation, CRM Integrations",
-    image: "/images/callhq.png",
-    link: "https://callhq.ai",
+    title: "Real-Time Doctor Finder",
+    subtitle: "Geofencing-Based Healthcare Platform",
+    year: "2024",
+    description:
+      "A full-stack healthcare platform with live map-based doctor discovery using geofencing. Patients browse nearby doctors on an interactive map, select and book appointments in real time. Built four complete apps — Admin, Doctor, Patient, and Receptionist — each with dedicated workflows.",
+    apps: ["Admin App", "Doctor App", "Patient App", "Receptionist App"],
+    tags: ["Angular", "Geofencing", "Maps API", "Node.js", "Real-time", "Spring Boot"],
   },
   {
-    title: "Whatsapp Automation",
-    category: "WABA Application",
-    tools: "WhatsApp Business API, Workflow Automation, Notifications",
-    image: "/images/whatsapp.png",
-    link: "https://whatsapp.callhq.ai",
-  },
-  {
-    title: "Broki",
-    category: "Real Estate Platform for FnB Industry",
-    tools: "Property Discovery, Lead Management, Marketplace Workflows",
-    image: "/images/broki.png",
-    link: "https://broki.in",
-  },
-  {
-    title: "Orrdr.com",
-    category: "Ecommerce Platform and Mobile App",
-    tools: "Ecommerce, Mobile Experience, Order Management",
-    image: "/images/orrdr.png",
-    link: "https://orrdr.com",
+    title: "Face Recognition Tool",
+    subtitle: "AI-Powered Identity Verification",
+    year: "2024",
+    description:
+      "Built a face recognition application leveraging Azure Cognitive Services Face API. Implements face detection, identification, and verification with a clean web interface.",
+    apps: [],
+    tags: ["Azure", "Cognitive Services", "Python", "Face API"],
   },
 ];
 
@@ -68,76 +57,85 @@ const Work = () => {
         </h2>
 
         <div className="carousel-wrapper">
-          {/* Navigation Arrows */}
-          <button
-            className="carousel-arrow carousel-arrow-left"
-            onClick={goToPrev}
-            aria-label="Previous project"
-            data-cursor="disable"
-          >
-            <MdArrowBack />
-          </button>
-          <button
-            className="carousel-arrow carousel-arrow-right"
-            onClick={goToNext}
-            aria-label="Next project"
-            data-cursor="disable"
-          >
-            <MdArrowForward />
-          </button>
-
-          {/* Slides */}
           <div className="carousel-track-container">
             <div
               className="carousel-track"
-              style={{
-                transform: `translateX(-${currentIndex * 100}%)`,
-              }}
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {projects.map((project, index) => (
                 <div className="carousel-slide" key={index}>
                   <div className="carousel-content">
-                    <div className="carousel-info">
-                      <div className="carousel-number">
-                        <h3>0{index + 1}</h3>
-                      </div>
-                      <div className="carousel-details">
-                        <h4>{project.title}</h4>
-                        <p className="carousel-category">
-                          {project.category}
-                        </p>
-                        <div className="carousel-tools">
-                          <span className="tools-label">Tools & Features</span>
-                          <p>{project.tools}</p>
+
+                    <div className="carousel-meta">
+                      <span className="carousel-index">0{index + 1}</span>
+                      <span className="carousel-year">{project.year}</span>
+                    </div>
+
+                    <div className="carousel-divider" />
+
+                    <div className="carousel-details">
+                      <p className="carousel-subtitle">{project.subtitle}</p>
+                      <h4>{project.title}</h4>
+                      <p className="carousel-description">{project.description}</p>
+
+                      {project.apps.length > 0 && (
+                        <div className="carousel-apps">
+                          {project.apps.map((app, i) => (
+                            <span key={i} className="carousel-app-tag">
+                              {app}
+                            </span>
+                          ))}
                         </div>
+                      )}
+
+                      <div className="carousel-tags">
+                        {project.tags.map((tag, i) => (
+                          <span key={i} className="carousel-tag">
+                            {tag}
+                          </span>
+                        ))}
                       </div>
                     </div>
-                    <div className="carousel-image-wrapper">
-                      <WorkImage
-                        image={project.image}
-                        alt={project.title}
-                        link={project.link}
-                      />
-                    </div>
+
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Dot Indicators */}
-          <div className="carousel-dots">
-            {projects.map((_, index) => (
+          <div className="carousel-footer">
+            <div className="carousel-dots">
+              {projects.map((_, index) => (
+                <button
+                  key={index}
+                  className={`carousel-dot ${index === currentIndex ? "carousel-dot-active" : ""}`}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Go to project ${index + 1}`}
+                  data-cursor="disable"
+                />
+              ))}
+            </div>
+
+            <div className="carousel-controls">
               <button
-                key={index}
-                className={`carousel-dot ${index === currentIndex ? "carousel-dot-active" : ""
-                  }`}
-                onClick={() => goToSlide(index)}
-                aria-label={`Go to project ${index + 1}`}
+                className="carousel-arrow"
+                onClick={goToPrev}
+                aria-label="Previous project"
                 data-cursor="disable"
-              />
-            ))}
+              >
+                <MdArrowBack />
+              </button>
+              <button
+                className="carousel-arrow"
+                onClick={goToNext}
+                aria-label="Next project"
+                data-cursor="disable"
+              >
+                <MdArrowForward />
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
